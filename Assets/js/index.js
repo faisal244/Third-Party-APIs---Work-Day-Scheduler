@@ -37,3 +37,43 @@ const workingHours = [
 		key: 17,
 	},
 ];
+
+// Read from local storage function
+const readFromLocalStorage = (key) => {
+	// get from LS using key name
+	const dataFromLS = localStorage.getItem(key);
+
+	// parse data from LS
+	const parsedData = JSON.parse(dataFromLS);
+	if (parsedData) {
+		return parsedData;
+	} else {
+		return "";
+	}
+};
+
+// Write to local storage function
+const writeToLocalStorage = (key, value) => {
+	// convert value to string
+	const stringifiedValue = JSON.stringify(value);
+
+	// set stringified value to LS for key name
+	localStorage.setItem(key, stringifiedValue);
+};
+
+// function to create HTML for each time block and append to the page
+
+// const renderTimeBlocks = () => { };
+
+// function to target the current date section and render the date and time
+
+// const renderDate = () => { }
+
+// // Initial function to execute on page load
+// const onReady = () => {
+//   renderDate();
+//   renderTimeBlocks();
+// };
+
+// Event listeners
+$(document).ready(onReady);
