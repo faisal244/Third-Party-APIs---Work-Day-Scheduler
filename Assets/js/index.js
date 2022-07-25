@@ -97,7 +97,30 @@ const renderTimeBlocks = () => {
         </div>
         </div>`);
 	});
+
+	// targeting all button elements
+	const buttons = document.querySelectorAll(".button-container");
+	// targeting text area elements
+	const textAreas = document.querySelectorAll(".text-area");
+	// looping trough each button and attaching an event listener
+	buttons.forEach((btn, index) => {
+		$(btn).on("click", () => {
+			// if text area is saved when not empty
+			if (textAreas[index].value != "") {
+				// render the alert and text box color
+				textAreas[index].classList.add("success-alert");
+				// call fn to store notes to LS
+				writeToLocalStorage(workingHours[index].key, textAreas[index].value);
+			} else {
+				// add alert message to text area section
+				textAreas[index].classList.add("danger-alert");
+				textAreas[index].placeholder =
+					"You can not save an empty section, please insert information to save";
+			}
+		});
+	});
 };
+
 // function to target the current date section and render the date and time
 const renderDate = () => {
 	// get current date from moment js and format date/time
