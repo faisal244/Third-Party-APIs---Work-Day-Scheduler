@@ -38,14 +38,6 @@ const workingHours = [
 	},
 ];
 
-// function to target the current date section
-const renderDate = () => {
-	// get current date from moment js and format date/time
-	const dateAndTime = moment().format("dddd, MMMM Do, YYYY hh:mm A");
-	//set the text.content to in the <p> to update the date
-	$("#currentDay").append(dateAndTime);
-};
-
 // Read from local storage function
 const readFromLocalStorage = (key) => {
 	// get from LS using key name
@@ -69,13 +61,50 @@ const writeToLocalStorage = (key, value) => {
 	localStorage.setItem(key, stringifiedValue);
 };
 
-// function to create HTML for each time block and append to the page
+// function to generate HTML for each time block, then append to the page.
+const renderTimeBlocks = () => {
+	// target the time block container and create time blocks for each working hour in the workingHours array
+	$.each(workingHours, function (index, workingHour) {
+		// get current hour using moment js
+		const currentHour = moment().hour();
 
-// const renderTimeBlocks = () => { };
+		// function to render the textarea color depending on the conditional statements
+		const renderTextareaColor = () => {
+			// if current hour is equal to working hour
+			if (currentHour === workingHour.key) {
+				return "present";
+			}
+			//if current hour is less than working Hour
+			else if (currentHour < workingHour.key) {
+				return "future";
+				//if current hour greater than  working Hour
+			} else if (currentHour > workingHour.key) {
+				return "past";
+			}
+		};
 
+		$(
+			"#time-block-container"
+		).append(`<div class="time-blocks d-flex flex-row align-items-center">
+        <div id=timeLabel">${workingHour.timeLabel}</div>
+        <textarea
+          class="text-area form-control text-black ${renderTextareaColor()}"
+          id="floatingTextarea2"
+          style="height: 100px"
+        >${readFromLocalStorage(workingHour.key)}</textarea>
+        <div class="button-container">
+          <button class="save-button">save</button>
+        </div>
+        </div>`);
+	});
+};
 // function to target the current date section and render the date and time
-
-// const renderDate = () => { }
+const renderDate = () => {
+	// get current date from moment js and format date/time
+	const dateAndTime = moment().format("dddd, MMMM Do, YYYY hh:mm A");
+	//set the text.content to in the <p> to update the date
+	$("#currentDay").append(dateAndTime);
+};
 
 // Initial function to execute on page load
 const onReady = () => {
@@ -85,4 +114,4 @@ const onReady = () => {
 
 // Event listeners
 $(document).ready(onReady);
-// $(window).on("load", onReady);
+// $(window).on("load", onReady)

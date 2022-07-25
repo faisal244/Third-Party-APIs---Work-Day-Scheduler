@@ -1,7 +1,15 @@
+:root {
+
+  --teal: #1c4646;
+
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
+  background-color: #1c4646;
+  color: #d3d3d3;
 }
 
 textarea {
@@ -11,23 +19,30 @@ textarea {
   color: #000000;
   border-left: 1px solid black;
   padding: 10px;
+  height: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+  /* color: #d3d3d3; */
 }
+
+
 
 .jumbotron {
   text-align: center;
   background-color: transparent;
-  color: black;
+  /* color: black; */
   border-radius: 0;
   border-bottom: 10px solid black;
+  color: #d3d3d3;
 }
 
 .description {
   white-space: pre-wrap;
 }
 
-.time-block {
+.time-blocks {
   text-align: center;
-  border-radius: 15px;
+  margin: 20px 30px;
 }
 
 .row {
@@ -57,12 +72,14 @@ textarea {
   color: white;
 }
 
-.saveBtn {
+
+.save-button {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   background-color: #06aed5;
   color: white;
+  margin: 20px 30px;
 }
 
 .saveBtn i:hover {
