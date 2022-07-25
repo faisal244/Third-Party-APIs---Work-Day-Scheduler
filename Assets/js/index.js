@@ -1,42 +1,50 @@
 // Declaration of an array of hourly time blocks
 const workingHours = [
 	{
-		timeLabel: "09:00AM",
+		timeLabel: "09:00",
 		key: 9,
 	},
 	{
-		timeLabel: "10:00AM",
+		timeLabel: "10:00",
 		key: 10,
 	},
 	{
-		timeLabel: "11:00AM",
+		timeLabel: "11:00",
 		key: 11,
 	},
 	{
-		timeLabel: "12:00AM",
+		timeLabel: "12:00",
 		key: 12,
 	},
 	{
-		timeLabel: "13:00PM",
+		timeLabel: "13:00",
 		key: 13,
 	},
 	{
-		timeLabel: "14:00PM",
+		timeLabel: "14:00",
 		key: 14,
 	},
 	{
-		timeLabel: "15:00PM",
+		timeLabel: "15:00",
 		key: 15,
 	},
 	{
-		timeLabel: "16:00PM",
+		timeLabel: "16:00",
 		key: 16,
 	},
 	{
-		timeLabel: "17:00PM",
+		timeLabel: "17:00",
 		key: 17,
 	},
 ];
+
+// function to target the current date section
+const renderDate = () => {
+	// get current date from moment js and format date/time
+	const dateAndTime = moment().format("dddd, MMMM Do, YYYY hh:mm A");
+	//set the text.content to in the <p> to update the date
+	$("#currentDay").append(dateAndTime);
+};
 
 // Read from local storage function
 const readFromLocalStorage = (key) => {
@@ -69,11 +77,12 @@ const writeToLocalStorage = (key, value) => {
 
 // const renderDate = () => { }
 
-// // Initial function to execute on page load
-// const onReady = () => {
-//   renderDate();
-//   renderTimeBlocks();
-// };
+// Initial function to execute on page load
+const onReady = () => {
+	renderDate();
+	renderTimeBlocks();
+};
 
 // Event listeners
 $(document).ready(onReady);
+// $(window).on("load", onReady);
