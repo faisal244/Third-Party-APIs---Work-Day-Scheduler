@@ -102,6 +102,9 @@ const renderTimeBlocks = () => {
 	const buttons = document.querySelectorAll(".button-container");
 	// targeting text area elements
 	const textAreas = document.querySelectorAll(".text-area");
+
+	const notify = document.querySelectorAll(".notification");
+
 	// looping trough each button and attaching an event listener
 	buttons.forEach((btn, index) => {
 		$(btn).on("click", () => {
@@ -111,6 +114,19 @@ const renderTimeBlocks = () => {
 				textAreas[index].classList.add("success-alert");
 				// call fn to store notes to LS
 				writeToLocalStorage(workingHours[index].key, textAreas[index].value);
+
+				//Render Saved to LS notification, and remove it after it has been displayed for 5 seconds
+				setTimeout(function () {
+					if ($("#notify").length > 0) {
+						$("#notify").empty();
+					}
+				}, 5000);
+
+				$("#notify").append(
+					`Appointment Added to <code>localStorage</code> ✔️`
+				);
+
+				classList.add("success-notification");
 			} else {
 				// add alert message to text area section
 				textAreas[index].classList.add("danger-alert");
