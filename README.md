@@ -1,4 +1,4 @@
-# 05 Third-Party APIs: Work Day Scheduler
+# Third-Party APIs: Work Day Scheduler
 
 ## Table of Contents
 
@@ -49,7 +49,7 @@ The following animation demonstrates the application functionality:
 
 ## Link to deployed application
 
-- https://faisal244.github.io/Third-Party-APIs---Work-Day-Scheduler/
+- https://faisal244.github.io/Work-Day-Scheduler/
 
 ## Contact me
 
