@@ -79,7 +79,16 @@ textarea {
   border-bottom-right-radius: 15px;
   background-color: #06aed5;
   color: white;
-  margin: 20px 30px;
+  margin: 5px 30px;
+}
+
+.delete-button {
+  border-left: 1px solid black;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-color: red;
+  color: white;
+  margin: 5px 30px;
 }
 
 .saveBtn i:hover {

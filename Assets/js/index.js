@@ -94,42 +94,44 @@ const renderTimeBlocks = () => {
         >${readFromLocalStorage(workingHour.key)}</textarea>
         <div class="button-container">
           <button class="save-button">save</button>
+
         </div>
         </div>`);
 	});
 
-	// targeting all button elements
-	const buttons = document.querySelectorAll(".button-container");
+	// targeting save and delete button elements
+	const saveButton = document.querySelectorAll(".save-button");
+
+	// delete button functionality to be considered in future development - see below 2 comments for reference
+	// const deleteButton = document.querySelectorAll(".delete-button");
+	// <button class="delete-button">Delete</button>
+
 	// targeting text area elements
 	const textAreas = document.querySelectorAll(".text-area");
 
 	const notify = document.querySelectorAll(".notification");
 
 	// looping trough each button and attaching an event listener
-	buttons.forEach((btn, index) => {
+	saveButton.forEach((btn, index) => {
 		$(btn).on("click", () => {
 			// if text area is saved when not empty
 			if (textAreas[index].value != "") {
-				// render the alert and text box color
-				textAreas[index].classList.add("success-alert");
 				// call fn to store notes to LS
 				writeToLocalStorage(workingHours[index].key, textAreas[index].value);
 
 				//Render Saved to LS notification, and remove it after it has been displayed for 5 seconds
+				$("#notify").empty();
+				$("#notify").append(
+					`Appointment Added to <code>localStorage</code> ✔️`
+				);
+
 				setTimeout(function () {
 					if ($("#notify").length > 0) {
 						$("#notify").empty();
 					}
 				}, 5000);
-
-				$("#notify").append(
-					`Appointment Added to <code>localStorage</code> ✔️`
-				);
-
-				classList.add("success-notification");
 			} else {
-				// add alert message to text area section
-				textAreas[index].classList.add("danger-alert");
+				// add alert message to text area section if no text has been entered and user tries to save
 				textAreas[index].placeholder =
 					"You can not save an empty section, please insert information to save";
 			}
@@ -145,6 +147,12 @@ const renderDate = () => {
 	$("#currentDay").append(dateAndTime);
 };
 
+// clear all tasks and reload page
+const clearLocalStorage = () => {
+	localStorage.clear();
+	location.reload();
+};
+
 // Initial function to execute on page load
 const onReady = () => {
 	renderDate();
@@ -153,4 +161,5 @@ const onReady = () => {
 
 // Event listeners
 $(document).ready(onReady);
-// $(window).on("load", onReady)
+const clearButton = $(".clearButton");
+clearButton.click(clearLocalStorage);
